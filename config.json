@@ -1,0 +1,10 @@
+{
+    "server": "luigieu.bishokus.fr:8080",
+    "user": {
+        "main": "",
+        "secondary": "",
+        "others": [],
+        "lang": "en",
+        "region": "eu"
+    }
+}
