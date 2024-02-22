@@ -2,6 +2,8 @@
 
 JigglyConnect is the simpliest way to fight other players in SSBU on Yuzu. This service is the first matchmaking service, and all of that 100% FREE! 
 
+<br>
+
 <div align="center">
   
   [![GitHub release (latest by date)](https://img.shields.io/github/v/release/Bishoko/JigglyConnect.svg?style=flat)](https://github.com/Bishoko/JigglyConnect/releases)
@@ -16,27 +18,40 @@ JigglyConnect is the simpliest way to fight other players in SSBU on Yuzu. This 
 
 1. Download the latest version of JigglyConnect from the [Releases](https://github.com/Bishoko/JigglyConnect/releases) section on GitHub.
 
-2. Extract the contents of `win-X64-jigglyconnect.zip` to the location of your choice on your computer.
+2. Extract the contents of `win-x64-jigglyconnect.zip` to the location of your choice on your computer.
 
 3. Open the chosen location and run  `JigglyConnect.exe`.
 
 4. Enjoy! >.<
 
-
-## 📋 Frequently Asked Questions (FAQ)
-
-Before asking questions, please check our [FAQ](https://github.com/Bishoko/JigglyConnect/blob/master/static/files/FAQ-en.md) to see if your question has already been answered. We've gathered commonly asked questions to provide you with quick answers.
-
-If your question is not addressed in the FAQ, feel free to ask us on our [Discord server](https://discord.gg/tUPsYHAGfm).
-
+<br>
 
 #### 💻 Operating System Support
 
 JigglyConnect currently supports Windows. We plan to develop versions for Linux and macOS very very soon. Unfortunately, Wine emulation is not a viable solution for Linux compatibility. We appreciate your patience as we work on expanding our supported platforms.
 
+<br>
+
+## 📋 Frequently Asked Questions (FAQ)
+
+### Is the matchmaking based on any kind of elo or my skill ?
+For now, no. We are planing to update our algorythme and do a ranked system. 
+
+### My opponent is laging, is it the server's fault ? 
+Yes and no. There are a lot of facters to keep in mind when playing on Yuzu:
+- Your or your oppent connection and the stability of your internet (ethernet is recommended).
+- Your hardware or your opponent  hardware (pcs that can't run the game proprely may result in freezing or loading time in match).
+- The distance separing the server, your opponent and you.
+
+### I live in outside of EU, can I still play using JigglyConnect ?
+Uh... Kinda ? We can't really tell. As said earlier, there is so many factors. We don't recommand using our service yet (more servers inside and outside of EU will be available soon). But if you really want it, nothing can stop you...
+
+<br>
+
+If your question is not addressed in the FAQ, feel free to ask us on our [Discord server](https://discord.gg/tUPsYHAGfm).
 
 
-### 🙏 Sponsors
+## 🙏 Sponsors
 
 <a href="[https://twitter.com/mady2ouf](https://twitter.com/WebDeckJ)" title="WebDeck">
   <img src="https://pbs.twimg.com/profile_images/1695220662317576192/LDPOoiIi_400x400.png" alt="SPONSOR-webdeck" width="60px" height="60px" style="border-radius: 50%;">
