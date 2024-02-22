@@ -1,5 +1,6 @@
 {
-    "server": "luigieu.bishokus.fr:8080",
+    "server": "JCeu.bishokus.fr:35000",
+    "client-version": "0.1",
     "user": {
         "main": "",
         "secondary": "",
