@@ -34,8 +34,17 @@ JigglyConnect currently supports Windows. We plan to develop versions for Linux 
 
 ## 📋 Frequently Asked Questions (FAQ)
 
+### Can anyone join the JigglyConnect room ? 
+No. The name and and password are randomly generated. Even if you know these factors, the room is limited for 2 players.
+
+### Can I chat with my oponent ?
+With the yuzu chat, yes.
+
 ### Is the matchmaking based on any kind of elo or my skill ?
 For now, no. We are planing to update our algorythme and do a ranked system. 
+
+### How do I stop the room ? 
+Lets say you're in a room, starting a new matchmaking will simply delete the old room. In case you just want to stop playing, the room will delete it self depending of your gamemode. 
 
 ### My opponent is laging, is it the server's fault ? 
 Yes and no. There are a lot of facters to keep in mind when playing on Yuzu:
