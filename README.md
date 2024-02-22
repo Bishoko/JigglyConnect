@@ -34,25 +34,22 @@ JigglyConnect currently supports Windows. We plan to develop versions for Linux 
 
 ## 📋 Frequently Asked Questions (FAQ)
 
-### Can anyone join the JigglyConnect room ? 
+### Can anyone join the JigglyConnect room outside the matchmaking ? 
 No. The name and and password are randomly generated. Even if you know these factors, the room is limited for 2 players.
 
 ### Can I chat with my oponent ?
-With the yuzu chat, yes.
+.
 
 ### Is the matchmaking based on any kind of elo or my skill ?
-For now, no. We are planing to update our algorythme and do a ranked system. 
-
-### How do I stop the room ? 
-Lets say you're in a room, starting a new matchmaking will simply delete the old room. In case you just want to stop playing, the room will delete it self depending of your gamemode. 
+Not for now. We are planing to update our algorythm and make a ranked system. 
 
 ### My opponent is laging, is it the server's fault ? 
-Yes and no. There are a lot of facters to keep in mind when playing on Yuzu:
-- Your or your oppent connection and the stability of your internet (ethernet is recommended).
+Yes and no. There are a lot of factors to keep in mind when playing on Yuzu:
+- Your or your opponent connection and the stability of your internet (ethernet is highly recommended).
 - Your hardware or your opponent  hardware (pcs that can't run the game proprely may result in freezing or loading time in match).
 - The distance separing the server, your opponent and you.
 
-### I live in outside of EU, can I still play using JigglyConnect ?
+### I live outside of Europe, can I still use JigglyConnect ?
 Uh... Kinda ? We can't really tell. As said earlier, there is so many factors. We don't recommand using our service yet (more servers inside and outside of EU will be available soon). But if you really want it, nothing can stop you...
 
 <br>
@@ -62,7 +59,7 @@ If your question is not addressed in the FAQ, feel free to ask us on our [Discor
 
 ## 🙏 Sponsors
 
-<a href="[https://twitter.com/mady2ouf](https://twitter.com/WebDeckJ)" title="WebDeck">
+<a href="[https://twitter.com/WebDeckJ]" title="WebDeck">
   <img src="https://pbs.twimg.com/profile_images/1695220662317576192/LDPOoiIi_400x400.png" alt="SPONSOR-webdeck" width="60px" height="60px" style="border-radius: 50%;">
 </a>
 
