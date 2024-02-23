@@ -55,7 +55,6 @@ A: It's a combination of factors. Several elements can affect gameplay on Yuzu:
 **Q: I live outside of the EU, can I still play using JigglyConnect?** \
 A: It's a bit tricky. We can't provide a definitive answer due to the multitude of factors involved. We currently do not recommend using our service extensively outside of the EU, but stay tuned as we plan to introduce more servers both inside and outside the EU in the near future.
 
----
 
 ### Additional Support
 
