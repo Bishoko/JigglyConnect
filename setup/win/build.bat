@@ -22,7 +22,8 @@ rem Navigate to the build directory
 cd build
 cd exe.win-amd64-3.11
 
-rem Sign the executable
+rem Sign all the executables
 "C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool" sign /a /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 JigglyConnect.exe
+"C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool" sign /a /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 JC-updater.exe
 
 echo Build done!

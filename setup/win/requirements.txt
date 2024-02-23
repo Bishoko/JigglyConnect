@@ -1,4 +1,6 @@
 cx_Freeze
+requests
+psutil
 pywin32
 pywebview
 pyautogui

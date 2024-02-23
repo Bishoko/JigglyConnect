@@ -25,7 +25,8 @@ base = "Win32GUI" if sys.platform == "win32" else None
 # base = 'console' if sys.platform=='win32' else None
 
 executables = [
-    Executable("main.py", base=base, target_name="JigglyConnect", icon="icon.ico")
+    Executable("main.py", base=base, target_name="JigglyConnect", icon="icon.ico"),
+    Executable("updater.py", base=base, target_name="JC-updater")
 ]
 
 with open("config.json", encoding="utf-8") as f:
@@ -50,6 +51,7 @@ exclude_folders = [
     "requirements.txt",
     "build.bat",
     "JigglyConnect.exe",
+    "JC-updater.exe",
     "icon.ico",
     "DOC.txt",
     "TODO.txt",
@@ -73,6 +75,7 @@ if os.path.exists(build_dir):
     target_dir = os.path.join(build_dir, first_folder)
 
     shutil.copy2("join_room.py", os.path.join(target_dir, "lib"))
+    shutil.copy2("updater.py", os.path.join(target_dir, "lib"))
 
     for item in os.listdir(script_dir):
         item_path = os.path.join(script_dir, item)
