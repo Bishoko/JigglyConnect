@@ -33,32 +33,12 @@ JigglyConnect currently supports Windows. We plan to develop versions for Linux 
 
 ## 📋 Frequently Asked Questions (FAQ)
 
-<<<<<<< Updated upstream
-### Can anyone join the JigglyConnect room outside the matchmaking ? 
-No. The name and and password are randomly generated. Even if you know these factors, the room is limited for 2 players.
-
-### Can I chat with my oponent ?
-.
-
-### Is the matchmaking based on any kind of elo or my skill ?
-Not for now. We are planing to update our algorythm and make a ranked system. 
-
-### My opponent is laging, is it the server's fault ? 
-Yes and no. There are a lot of factors to keep in mind when playing on Yuzu:
-- Your or your opponent connection and the stability of your internet (ethernet is highly recommended).
-- Your hardware or your opponent  hardware (pcs that can't run the game proprely may result in freezing or loading time in match).
-- The distance separing the server, your opponent and you.
-
-### I live outside of Europe, can I still use JigglyConnect ?
-Uh... Kinda ? We can't really tell. As said earlier, there is so many factors. We don't recommand using our service yet (more servers inside and outside of EU will be available soon). But if you really want it, nothing can stop you...
-=======
 ### Matchmaking and Skill Levels
 
 **Q: Is the matchmaking based on any kind of Elo or my skill?** \
 A: Not at the moment, but we have plans to update our algorithm and implement a ranked system.
 
 ---
->>>>>>> Stashed changes
 
 ### Connection and Lag Issues
 
@@ -87,17 +67,11 @@ A: Feel free to ask us on our [Discord server](https://discord.gg/XYWkknWBGS). O
 
 ## 🙏 Sponsors
 
-<<<<<<< Updated upstream
-<a href="[https://twitter.com/WebDeckJ]" title="WebDeck">
-  <img src="https://pbs.twimg.com/profile_images/1695220662317576192/LDPOoiIi_400x400.png" alt="SPONSOR-webdeck" width="60px" height="60px" style="border-radius: 50%;">
-</a>
-=======
 <div align="center">
   <a href="https://github.com/Lenochxd/WebDeck" title="WebDeck">
     <img src="https://pbs.twimg.com/profile_images/1695220662317576192/LDPOoiIi_400x400.png" alt="SPONSOR-webdeck" width="60px" height="60px">
   </a>
   </br>
->>>>>>> Stashed changes
 
   This project is sponsored by [WebDeck](https://github.com/Lenochxd/WebDeck), \
   the ultimate open-source stream deck alternative
