@@ -5,12 +5,35 @@ import pygetwindow as gw
 
 platform = sys.platform.lower()
 
+
+class GlobalContainer:
+    global_variable = None
+
+def set_global_variable(value):
+    GlobalContainer.global_variable = value
+
+def get_global_variable():
+    return GlobalContainer.global_variable
+
+
+def callback(result):
+    print(result)
+
+window = None
+def send_error(window, message):
+    window.evaluate_js(f"showError('{message}');", callback)
+
+
 if platform.startswith("win"):
     import ctypes
     import win32gui
 
     def showError(message):
         print(message)
+        window = get_global_variable()
+        send_error(window, message)
+        set_global_variable(window)
+        
         ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
 
     def focus_yuzu():
@@ -23,7 +46,7 @@ if platform.startswith("win"):
                 if "smash" not in title:
                     showError("SSBU is not launched!")
                     return False
-                if "13.0.1" not in title:
+                if "13.0." not in title:
                     showError("Please update your game! Only 13.0.1 is supported.")
                     return False
                 found = True
@@ -32,12 +55,13 @@ if platform.startswith("win"):
                 break
 
         if not found:
-            showError(f"Yuzu window not found")
+            showError("Yuzu window not found")
             return False
 
         return True
 
     def macro(ip, port, username, password):
+        pyautogui.press("esc")
         pyautogui.hotkey("ctrl", "c")
 
         window_rect = pyautogui.getActiveWindow()
@@ -80,4 +104,4 @@ if platform.startswith("win"):
 
 if __name__ == "__main__":
     # test
-    join_room("74.47.74.47", 35008, "username", "password :3")
+    join_room("74.47.74.47", 35008, "usérname", "password :3")

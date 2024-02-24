@@ -5,24 +5,15 @@ import shutil
 import requests
 import subprocess
 import webview
-import threading
 import tkinter as tk
 from tkinter import messagebox
 
-from join_room import join_room, showError
+from join_room import join_room, showError, set_global_variable, get_global_variable
 from updater import compare_versions
-
-
-def server():
-    import server
-    
-server_thread = threading.Thread(target=server, daemon=True)
-server_thread.start()
 
 
 with open("config.json", encoding="utf-8") as f:
     config = json.load(f)
-
 
 def check_for_updates():
     try:
@@ -67,25 +58,28 @@ def check_for_updates():
         showError(f"Auto Update error: {e}\n\n Please update manually on https://github.com/Bishoko/JigglyConnect/releases")
         os.startfile("https://github.com/Bishoko/JigglyConnect/releases/latest")
         sys.exit()
-    
 
+    
 def read_cookies(window):
+    # read cookies
     cookies = window.get_cookies()
-        
+    
 if __name__ == '__main__':
     check_for_updates()
     
     window = webview.create_window(
         'JigglyConnect',
         f'http://{config["server"]}/',
+        # 'http://localhost:35000/',
         resizable=False,
-        width=1000,
-        height=630,
+        width=1080,
+        height=720,
         background_color='#000'
     )
     
     window.expose(join_room)
-    
+    set_global_variable(window)
+
     webview.start(
         read_cookies, window,
         private_mode=False,
