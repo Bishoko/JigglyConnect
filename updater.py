@@ -143,7 +143,7 @@ def download_and_extract(download_url):
         with zipfile.ZipFile("JC-update.zip", "r") as zip_ref:
             zip_ref.extractall("JC-update")
 
-        source = os.path.join(jc_dir, "JigglyConnect")
+        source = os.path.join(jc_dir, "JC-update/JigglyConnect")
         destination = jc_dir
 
         move_folder_content(source, destination)
