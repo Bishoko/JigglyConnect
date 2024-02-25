@@ -2,6 +2,8 @@ import sys
 import time
 import pyautogui
 import pygetwindow as gw
+import tkinter as tk
+from tkinter import messagebox
 
 platform = sys.platform.lower()
 
@@ -20,8 +22,17 @@ def callback(result):
     print(result)
 
 window = None
-def send_error(window, message):
+def send_error(message):
+    window = get_global_variable()
     window.evaluate_js(f"showError('{message}');", callback)
+    focus_webview()
+    set_global_variable(window)
+
+def send_info(message):
+    window = get_global_variable()
+    window.evaluate_js(f"""showInfo('{message}');""", callback)
+    focus_webview()
+    set_global_variable(window)
 
 
 if platform.startswith("win"):
@@ -30,13 +41,10 @@ if platform.startswith("win"):
 
     def showError(message):
         print(message)
-        window = get_global_variable()
-        send_error(window, message)
-        set_global_variable(window)
-        
-        ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
+        send_error(message)
+        # ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
 
-    def focus_yuzu():
+    def yuzu_ready():
         found = False
         windows = gw.getAllWindows()
 
@@ -47,19 +55,62 @@ if platform.startswith("win"):
                     showError("SSBU is not launched!")
                     return False
                 if "13.0." not in title:
-                    showError("Please update your game! Only 13.0.1 is supported.")
+                    showError("Please update your game! Only 13.0.1 and 13.0.2 are supported.")
                     return False
+                yuzu_window = window
                 found = True
-                window.activate()  # Focus window
-                win32gui.ShowWindow(window._hWnd, 9)  # Restore window if minimized
                 break
 
         if not found:
-            showError("Yuzu window not found")
+            showError("Yuzu doesn't seem to be launched.")
             return False
 
-        return True
+        return yuzu_window
 
+    def focus_yuzu():
+        yuzu_window = yuzu_ready()
+        if yuzu_window != False:
+            try:
+                yuzu_window.activate()  # Focus window
+            except gw.PyGetWindowException:
+                pass
+            win32gui.ShowWindow(yuzu_window._hWnd, 9)  # Restore window if minimized
+            return True
+        
+        return False
+    
+    def focus_webview():
+        windows = gw.getAllWindows()
+
+        for window in windows:
+            title = window.title.lower()
+            if "JigglyConnect" in title and not "[" in title:
+                try:
+                    window.activate()  # Focus window
+                except gw.PyGetWindowException:
+                    pass
+                win32gui.ShowWindow(window._hWnd, 9)  # Restore window if minimized
+                break
+    
+    def check_room_status():
+        return any(
+            "[jigglyconnect] matchmaking" in window.title.lower()
+            for window in gw.getAllWindows()
+        )
+    
+    def handle_room_failed(ip, port, username, password):
+        fenetre = tk.Tk()
+        fenetre.withdraw()
+        answer = messagebox.askyesno("Failed to join the room.", "Retry?")
+        
+        if answer:
+            macro(ip, port, username, password)
+        else:
+            send_info(
+                f" Go on Yuzu -> Ctrl+C, and then enter:<BR><BR>Adress: {ip}<BR>Port: {port}<BR>Password: {password}<BR>"
+            )
+    
+    
     def macro(ip, port, username, password):
         pyautogui.press("esc")
         pyautogui.hotkey("ctrl", "c")
@@ -81,25 +132,32 @@ if platform.startswith("win"):
         pyautogui.press("enter")
         pyautogui.press("enter")
         pyautogui.press("enter")
-
+        
+        time.sleep(0.1)
+        if not check_room_status():
+            print('room not joined!')
+            handle_room_failed(ip, port, username, password)
+            
 
     cooldown_timestamp = 0
-
+    
     def join_room(ip, port, username, password):
         global cooldown_timestamp
-
+        
         current_timestamp = time.time()
         if not current_timestamp >= cooldown_timestamp:
             print("cooldown")
         else:
             cooldown_timestamp = current_timestamp + 10
 
-            result = focus_yuzu()
-            if result == True:
+            if focus_yuzu() == True:
                 time.sleep(0.5)
                 macro(ip, str(port), username, password)
 
-            print("Room joined")
+                print("Room joined")
+            else:
+                print("Failed to join room")
+    
 
 
 if __name__ == "__main__":

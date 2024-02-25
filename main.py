@@ -8,7 +8,7 @@ import webview
 import tkinter as tk
 from tkinter import messagebox
 
-from join_room import join_room, showError, set_global_variable, get_global_variable
+from join_room import yuzu_ready, join_room, showError, set_global_variable, get_global_variable
 from updater import compare_versions
 
 
@@ -77,7 +77,9 @@ if __name__ == '__main__':
         background_color='#000'
     )
     
+    window.expose(yuzu_ready)
     window.expose(join_room)
+    
     set_global_variable(window)
 
     webview.start(
