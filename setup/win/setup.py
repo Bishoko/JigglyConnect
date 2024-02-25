@@ -86,7 +86,10 @@ if os.path.exists(build_dir):
             and item.endswith(".md") == False
         ):
             if os.path.isdir(item_path):
-                shutil.copytree(item_path, os.path.join(target_dir, item))
+                try:
+                    shutil.copytree(item_path, os.path.join(target_dir, item))
+                except FileExistsError:
+                    pass
             else:
                 shutil.copy2(item_path, target_dir)
             print(f"copying {item_path} -> {target_dir}")
