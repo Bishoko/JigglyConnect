@@ -23,6 +23,7 @@ def callback(result):
 
 window = None
 def send_error(message):
+    print(message)
     window = get_global_variable()
     window.evaluate_js(f"showError('{message}');", callback)
     focus_webview()
@@ -30,7 +31,7 @@ def send_error(message):
 
 def send_info(message):
     window = get_global_variable()
-    window.evaluate_js(f"""showInfo('{message}');""", callback)
+    window.evaluate_js(f"showInfo('{message}');", callback)
     focus_webview()
     set_global_variable(window)
 
@@ -40,9 +41,7 @@ if platform.startswith("win"):
     import win32gui
 
     def showError(message):
-        print(message)
-        send_error(message)
-        # ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
+        ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
 
     def yuzu_ready():
         found = False
@@ -52,17 +51,17 @@ if platform.startswith("win"):
             title = window.title.lower()
             if "yuzu" in title and "installer" not in title:
                 if "smash" not in title:
-                    showError("SSBU is not launched!")
+                    send_error("SSBU is not launched!")
                     return False
                 if "13.0." not in title:
-                    showError("Please update your game! Only 13.0.1 and 13.0.2 are supported.")
+                    send_error("Please update your game! Only 13.0.1 and 13.0.2 are supported.")
                     return False
                 yuzu_window = window
                 found = True
                 break
 
         if not found:
-            showError("Yuzu doesn't seem to be launched.")
+            send_error("Yuzu doesn't seem to be launched.")
             return False
 
         return yuzu_window
