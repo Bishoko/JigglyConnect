@@ -1,5 +1,5 @@
 {
-    "server": "JCeu.bishokus.fr:35000",
+    "server": "https://JCeu.bishokus.fr:35000",
     "client-version": "0.2",
     "user": {
         "main": "",
