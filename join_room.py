@@ -30,6 +30,7 @@ def send_error(message):
     set_global_variable(window)
 
 def send_info(message):
+    print(message)
     window = get_global_variable()
     window.evaluate_js(f"showInfo('{message}');", callback)
     focus_webview()
@@ -61,12 +62,12 @@ if platform.startswith("win"):
                 break
 
         if not found:
-            send_error("Yuzu doesn't seem to be launched.")
+            send_error("Yuzu doesn&#39;t seem to be launched.")
             return False
 
         return yuzu_window
 
-    def focus_yuzu():
+    def focus_yuzu_window():
         yuzu_window = yuzu_ready()
         if yuzu_window != False:
             try:
@@ -74,9 +75,28 @@ if platform.startswith("win"):
             except gw.PyGetWindowException:
                 pass
             win32gui.ShowWindow(yuzu_window._hWnd, 9)  # Restore window if minimized
+            
             return True
-        
         return False
+    
+    def focus_yuzu():
+        print('1')
+        if not 'yuzu' in gw.getActiveWindow().title.lower():
+            print('2')
+            windows = gw.getAllWindows()
+
+            for window in windows:
+                title = window.title.lower()
+                if "yuzu" in title and not "yuzu 1" in title:
+                    try:
+                        window.activate()  # Focus window
+                    except gw.PyGetWindowException:
+                        pass
+                    win32gui.ShowWindow(window._hWnd, 9)  # Restore window if minimized
+                    pyautogui.press("esc")
+            return focus_yuzu_window()
+                        
+        return True
     
     def focus_webview():
         windows = gw.getAllWindows()
@@ -103,7 +123,13 @@ if platform.startswith("win"):
         answer = messagebox.askyesno("Failed to join the room.", "Retry?")
         
         if answer:
-            macro(ip, port, username, password)
+            if focus_yuzu() == True:
+                time.sleep(0.5)
+                macro(ip, str(port), username, password)
+
+                print("Room joined")
+            else:
+                print("Failed to join room")
         else:
             send_info(
                 f" Go on Yuzu -> Ctrl+C, and then enter:<BR><BR>Adress: {ip}<BR>Port: {port}<BR>Password: {password}<BR>"
@@ -112,6 +138,9 @@ if platform.startswith("win"):
     
     def macro(ip, port, username, password):
         pyautogui.press("esc")
+        pyautogui.press("esc")
+        pyautogui.press("esc")
+        time.sleep(0.1)
         pyautogui.hotkey("ctrl", "c")
 
         window_rect = pyautogui.getActiveWindow()
