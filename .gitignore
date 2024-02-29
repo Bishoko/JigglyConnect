@@ -1,6 +1,10 @@
 # JigglyConnect
+*.exe
+lib
 server
-
+DOC.txt
+TODO.txt
+JigglyConnect
 
 # macos
 .DS_store
