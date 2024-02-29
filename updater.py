@@ -119,6 +119,11 @@ def check_updates(current_version):
         print("Removing JigglyConnect directory")
         update_dir_path = os.path.join(jc_dir, "JigglyConnect")
         shutil.rmtree(update_dir_path, ignore_errors=True)
+        
+        # Remove the JC-update directory
+        print("Removing JC-update directory")
+        update_dir_path = os.path.join(jc_dir, "JC-update")
+        shutil.rmtree(update_dir_path, ignore_errors=True)
 
         # Delete the JC-update.zip file
         zip_file_path = os.path.join(jc_dir, "JC-update.zip")
