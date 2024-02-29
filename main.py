@@ -69,7 +69,7 @@ if __name__ == '__main__':
     
     window = webview.create_window(
         'JigglyConnect',
-        f'{config["server"]}/',
+        f'http://{config["server"]}/',
         # 'http://localhost:35000/',
         resizable=False,
         width=1080,
