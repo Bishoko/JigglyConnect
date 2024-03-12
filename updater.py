@@ -15,7 +15,7 @@ from tkinter import messagebox
 
 def error(message):
     print(message)
-    ctypes.windll.user32.MessageBoxW(None, message, "WebDeck Updater Error", 0)
+    ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Updater Error", 0)
 
 
 def move_folder_content(source, destination):
