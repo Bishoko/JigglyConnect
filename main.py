@@ -5,7 +5,6 @@ import shutil
 import requests
 import subprocess
 import webview
-import tkinter as tk
 from tkinter import messagebox
 
 from join_room import yuzu_ready, join_room, showError, set_global_variable, get_global_variable
@@ -34,8 +33,6 @@ def check_for_updates():
         if compare_versions(latest_version, current_version) > 0:
             print(f"New version available: {latest_version}")
             
-            fenetre = tk.Tk()
-            fenetre.withdraw()
             answer = messagebox.askyesno("JigglyConnect Update", "An update is available, do you want to install it?")
             
             if answer:
