@@ -1,4 +1,6 @@
 import sys
+import os
+import json
 import time
 import pyautogui
 import pygetwindow as gw
@@ -7,6 +9,14 @@ from tkinter import messagebox
 
 platform = sys.platform.lower()
 
+
+config_path = "../config.json"
+if os.path.exists("config.json"):
+    config_path = "config.json"
+    
+with open(config_path, encoding="utf-8") as f:
+    config = json.load(f)
+    config["emu"] = config["emu"].lower()
 
 class GlobalContainer:
     global_variable = None
@@ -25,7 +35,10 @@ window = None
 def send_error(message):
     print(message)
     window = get_global_variable()
-    window.evaluate_js(f"showError('{message}');", callback)
+    try:
+        window.evaluate_js(f"showError('{message}');", callback)
+    except AttributeError:
+        print("testing mode detected")
     focus_webview()
     set_global_variable(window)
 
@@ -50,8 +63,9 @@ if platform.startswith("win"):
 
         for window in windows:
             title = window.title.lower()
-            if "yuzu" in title and "installer" not in title:
-                if "smash" not in title:
+            if config["emu"] in title and "installer" not in title:
+                if "smash" not in title and "01006A800016E000" not in title:
+                    print("title: ",title)
                     send_error("SSBU is not launched!")
                     return False
                 if "13.0." not in title:
@@ -81,7 +95,7 @@ if platform.startswith("win"):
     
     def focus_yuzu():
         print('1')
-        if not 'yuzu' in gw.getActiveWindow().title.lower():
+        if not config["emu"] in gw.getActiveWindow().title.lower():
             print('2')
             windows = gw.getAllWindows()
 
