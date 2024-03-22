@@ -11,8 +11,16 @@ from join_room import yuzu_ready, join_room, showError, set_global_variable, get
 from updater import compare_versions
 
 
-with open("config.json", encoding="utf-8") as f:
-    config = json.load(f)
+def get_config():
+    with open("config.json", encoding="utf-8") as f:
+        return json.load(f)
+    
+config = get_config()
+
+def save_config(config):
+    with open("config.json", "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=4)
+    
 
 def check_for_updates():
     try:
@@ -74,13 +82,15 @@ if __name__ == '__main__':
         background_color='#000'
     )
     
-    window.expose(yuzu_ready)
-    window.expose(join_room)
+    window.expose(yuzu_ready, join_room)
+    window.expose(get_config, save_config)
     
     set_global_variable(window)
 
     webview.start(
         read_cookies, window,
         private_mode=False,
+        debug=True,
         user_agent=f"JigglyConnect Browser {config['client-version']}"
     )
+    
