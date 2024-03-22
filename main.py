@@ -90,7 +90,6 @@ if __name__ == '__main__':
     webview.start(
         read_cookies, window,
         private_mode=False,
-        debug=True,
         user_agent=f"JigglyConnect Browser {config['client-version']}"
     )
     
