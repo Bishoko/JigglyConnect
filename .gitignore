@@ -5,6 +5,8 @@ server
 DOC.txt
 TODO.txt
 JigglyConnect
+logo/*
+.test.py
 
 # macos
 .DS_store
