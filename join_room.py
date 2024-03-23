@@ -13,10 +13,14 @@ platform = sys.platform.lower()
 config_path = "../config.json"
 if os.path.exists("config.json"):
     config_path = "config.json"
-    
-with open(config_path, encoding="utf-8") as f:
-    config = json.load(f)
-    config["emu"] = config["emu"].lower()
+
+def reload_config():
+    with open(config_path, encoding="utf-8") as f:
+        config = json.load(f)
+        config["emu"] = config["emu"].lower()
+    return config
+
+config = reload_config()
 
 class GlobalContainer:
     global_variable = None
@@ -58,6 +62,7 @@ if platform.startswith("win"):
         ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
 
     def yuzu_ready():
+        config = reload_config()
         found = False
         windows = gw.getAllWindows()
 
@@ -94,23 +99,22 @@ if platform.startswith("win"):
         return False
     
     def focus_yuzu():
-        print('1')
-        if not config["emu"] in gw.getActiveWindow().title.lower():
-            print('2')
-            windows = gw.getAllWindows()
+        if config["emu"] in gw.getActiveWindow().title.lower():
+            return True
+        
+        windows = gw.getAllWindows()
 
-            for window in windows:
-                title = window.title.lower()
-                if "yuzu" in title and not "yuzu 1" in title:
-                    try:
-                        window.activate()  # Focus window
-                    except gw.PyGetWindowException:
-                        pass
-                    win32gui.ShowWindow(window._hWnd, 9)  # Restore window if minimized
-                    pyautogui.press("esc")
-            return focus_yuzu_window()
-                        
-        return True
+        for window in windows:
+            title = window.title.lower()
+            if "yuzu" in title and not "yuzu 1" in title:
+                try:
+                    window.activate()  # Focus window
+                except gw.PyGetWindowException:
+                    pass
+                win32gui.ShowWindow(window._hWnd, 9)  # Restore window if minimized
+                pyautogui.press("esc")
+                
+        return focus_yuzu_window()
     
     def focus_webview():
         windows = gw.getAllWindows()
