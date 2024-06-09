@@ -81,7 +81,8 @@ if platform.startswith("win"):
                 break
 
         if not found:
-            send_error("Yuzu doesn&#39;t seem to be launched.")
+            emu_name = config['emu'].capitalize()
+            send_error(f"{emu_name} doesn&#39;t seem to be launched.")
             return False
 
         return yuzu_window
