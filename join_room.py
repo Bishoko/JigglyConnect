@@ -56,10 +56,37 @@ def send_info(message):
 
 if platform.startswith("win"):
     import ctypes
+    import psutil
     import win32gui
+    
 
     def showError(message):
         ctypes.windll.user32.MessageBoxW(None, message, "JigglyConnect Error", 0)
+        
+
+    GetWindowThreadProcessId = ctypes.windll.user32.GetWindowThreadProcessId
+    OpenProcess = ctypes.windll.kernel32.OpenProcess
+    CloseHandle = ctypes.windll.kernel32.CloseHandle
+
+    PROCESS_QUERY_INFORMATION = 0x0400
+    PROCESS_VM_READ = 0x0010
+
+    def get_pid_from_hwnd(hwnd):
+        pid = ctypes.c_ulong()
+        GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+        return pid.value
+
+    def get_exe_path_from_hwnd(hwnd):
+        pid = get_pid_from_hwnd(hwnd)
+        if pid == 0:
+            return None
+
+        try:
+            process = psutil.Process(pid)
+            exe_path = process.exe()
+            return exe_path
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            return None
 
     def yuzu_ready():
         config = reload_config()
@@ -68,9 +95,13 @@ if platform.startswith("win"):
 
         for window in windows:
             title = window.title.lower()
-            if config["emu"] in title and "installer" not in title:
+            if (
+                config["emu"] in title
+                and "installer" not in title
+                and config["emu"].lower() in get_exe_path_from_hwnd(window._hWnd).lower()
+            ):
                 if "smash" not in title and "01006A800016E000" not in title:
-                    print("title: ",title)
+                    print("title: ", title)
                     send_error("SSBU is not launched!")
                     return False
                 if "13.0." not in title:
