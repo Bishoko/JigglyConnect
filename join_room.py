@@ -81,7 +81,7 @@ if platform.startswith("win"):
                 break
 
         if not found:
-            config['emu'].capitalize()
+            emu_name = config['emu'].capitalize()
             send_error(f"{emu_name} doesn&#39;t seem to be launched.")
             return False
 
