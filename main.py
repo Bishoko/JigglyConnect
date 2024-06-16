@@ -75,10 +75,11 @@ def read_cookies(window):
 if __name__ == '__main__':
     check_for_updates()
     
+    server_host = f"http://{config['server'].replace('http://','').replace('https://','')}"
+
     window = webview.create_window(
         'JigglyConnect',
-        f'http://{config["server"]}/',
-        # 'http://localhost:35000/',
+        server_host,
         resizable=False,
         width=1080,
         height=720,
