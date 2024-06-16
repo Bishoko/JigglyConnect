@@ -67,7 +67,10 @@ def check_for_updates():
     
 def read_cookies(window):
     # read cookies
-    cookies = window.get_cookies()
+    try:
+        cookies = window.get_cookies()
+    except:
+        cookies = None
     
 if __name__ == '__main__':
     check_for_updates()
