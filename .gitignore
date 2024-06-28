@@ -4,7 +4,7 @@ lib
 server
 DOC.txt
 TODO.txt
-JigglyConnect
+venv
 logo/*
 .test.py
 

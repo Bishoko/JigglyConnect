@@ -58,7 +58,7 @@ exclude_folders = [
     "debug.log",
     "server",
     "setup",
-    "JigglyConnect",
+    "venv"
 ]
 
 script_dir = os.getcwd()

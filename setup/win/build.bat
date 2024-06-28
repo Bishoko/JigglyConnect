@@ -5,7 +5,7 @@ cd ..
 cd ..
 
 rem Create a virtual environment
-python -m venv JigglyConnect
+python -m venv venv
 
 rem Activate the virtual environment
 call JigglyConnect\Scripts\activate.bat
