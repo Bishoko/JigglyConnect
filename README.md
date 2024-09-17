@@ -1,6 +1,6 @@
 # JigglyConnect
 
-JigglyConnect is the simpliest way to fight other players in SSBU on Yuzu. This service is the first matchmaking service, and all of that 100% FREE! 
+JigglyConnect is the simpliest way to fight other players in SSBU on Yuzu or Suyu. This service is the first matchmaking service, and all of that 100% FREE! 
 
 <br>
 
